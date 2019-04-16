@@ -87,6 +87,7 @@
   "dependencies": {
     "call-me-maybe": "^1.0.1",
     "js-yaml": "^3.12.1",
+    "lodash": "^4.17.11",
     "ono": "^4.0.11"
   }
 }
