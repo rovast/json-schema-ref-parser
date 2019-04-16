@@ -13,19 +13,23 @@
     "resolve"
   ],
   "author": {
-    "name": "James Messinger",
-    "url": "https://jamesmessinger.com"
+    "name": "rovast",
+    "url": "https://jrovast.github.io"
   },
   "contributors": [
     {
       "name": "Boris Cherny",
       "email": "boris@performancejs.com"
+    },
+    {
+      "name": "roavst",
+      "email": "rovast@163.com"
     }
   ],
   "homepage": "https://apidevtools.org/json-schema-ref-parser/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/APIDevTools/json-schema-ref-parser.git"
+    "url": "https://github.com/rovast/json-schema-ref-parser.git"
   },
   "license": "MIT",
   "main": "lib/index.js",
