@@ -1,3 +1,42 @@
+# kill-circular
+
+这个包在官方的基础上解除了循环引用。
+
+why?
+
+swagger-parser 官方使用的是 json-schema-parser 来解析的协议。在 [json-schema-parser](https://github.com/APIDevTools/json-schema-ref-parser) 的 `lib/dereference.js` 中有如下内容
+
+line 58
+
+```javascript
+if ($Ref.isAllowed$Ref(value, options)) {
+  dereferenced = dereference$Ref(value, keyPath, keyPathFromRoot, parents, $refs, options);
+  circular = dereferenced.circular;
+  obj[key] = dereferenced.value;
+}
+```
+
+修改后
+
+```javascript
+if ($Ref.isAllowed$Ref(value, options)) {
+  dereferenced = dereference$Ref(value, keyPath, keyPathFromRoot, parents, $refs, options);
+  circular = dereferenced.circular;
+  obj[key] = circular ? _.cloneDeep(dereferenced.value) : dereferenced.value;
+}
+```
+
+注意观察最后一行，官方的写法是如果是循环引用，是自己引用自己，`obj[key] === dereferenced.value.items` 恒成立。
+
+我的修改，是拷贝了一份副本，避免了重复引用。这个是为了方便后续的 mock 和 api 在 html 中的渲染，大家酌情使用
+
+#############
+
+以下是官方说明
+
+##############
+
+
 JSON Schema $Ref Parser
 ============================
 #### Parse, Resolve, and Dereference JSON Schema $ref pointers
